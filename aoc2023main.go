@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	var aocDay = "2A"
+	var aocDay = "3A"
 
 	fmt.Println("*** Advent of Code 2023 ***")
 
@@ -13,7 +13,7 @@ func main() {
 
 	//fmt.Println("Read from file: " + strings.Join(linesRead, ""))
 
-	processDay2B(linesRead)
+	processDay3B(linesRead)
 
 	fmt.Println("*** End of program ***")
 }
