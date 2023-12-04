@@ -99,11 +99,6 @@ func getNumbersAndSymbols(inputLine string, inRow int, machineParts *[]machinePa
 	//fmt.Println("> Number of machine parts: " + strconv.Itoa(len(*machineParts)))
 	//fmt.Println("> Number of symbols: " + strconv.Itoa(len(*machineSymbols)))
 
-	//fmt.Println("Printing machine parts found: ")
-	//for m := 0; m < len(*machineParts); m++ {
-	//fmt.Println("  > " + *machineParts[m].partString + " : " + strconv.Itoa(*machineParts[m].partNumber))
-	//}
-
 	if currentPart != (machinePart{}) {
 		runeToInt, _ := strconv.Atoi(currentPart.partString)
 		currentPart.partNumber = runeToInt
@@ -118,7 +113,7 @@ func checkPartsTouchingSymbols(machineParts []machinePart, machineSymbols []mach
 
 	for p := 0; p < len(machineParts); p++ {
 		currentPart := machineParts[p]
-		fmt.Println("Current part is: " + currentPart.partString)
+		//fmt.Println("Current part is: " + currentPart.partString)
 
 		for s := 0; s < len(machineSymbols); s++ {
 			currentSymbol := &machineSymbols[s]
@@ -132,7 +127,7 @@ func checkPartsTouchingSymbols(machineParts []machinePart, machineSymbols []mach
 			if isAboveOrBelow && isNextTo {
 				total = total + currentPart.partNumber
 				currentSymbol.partCount = currentSymbol.partCount + 1
-				fmt.Println("Count: " + strconv.Itoa(currentSymbol.partCount))
+				//fmt.Println("Count: " + strconv.Itoa(currentSymbol.partCount))
 				if currentSymbol.partCount == 1 {
 					currentSymbol.gearRatio = currentPart.partNumber
 				}
@@ -145,7 +140,6 @@ func checkPartsTouchingSymbols(machineParts []machinePart, machineSymbols []mach
 			}
 		}
 	}
-	fmt.Println("Brute force part 1 total: " + strconv.Itoa(total))
 }
 
 func processDay3A(inputLines []string) {
@@ -156,9 +150,6 @@ func processDay3A(inputLines []string) {
 	var machineParts []machinePart
 	var machineSymbols []machineSymbol
 
-	fmt.Println("Number of machine parts: " + strconv.Itoa(len(machineParts)))
-	fmt.Println("Number of symbols: " + strconv.Itoa(len(machineSymbols)))
-
 	fmt.Println("Input: ")
 	for i := 0; i < len(inputLines); i++ {
 		inputLine := inputLines[i]
@@ -172,44 +163,43 @@ func processDay3A(inputLines []string) {
 	// Now that we have the listing of symbols and machine parts, let's see where a symbol is touching a part
 	checkPartsTouchingSymbols(machineParts, machineSymbols)
 
-	//for s := 0; i <
-
-	//fmt.Println("Total for games: " + strconv.Itoa(total))
 	fmt.Println("*** End processing ***")
 }
 
-func processDay3B(inputLines []string) {
-	fmt.Println("*** Day 3 part B ***")
-	//total := 0
+func processDay3B(inputLines []string, aocDay AdventOfCodeDay) {
+	fmt.Println("*** Day " + strconv.Itoa(aocDay.day) + " part " + aocDay.part + " ***")
 
 	//initialize objects needed
 	var machineParts []machinePart
 	var machineSymbols []machineSymbol
 
-	fmt.Println("Number of machine parts: " + strconv.Itoa(len(machineParts)))
-	fmt.Println("Number of symbols: " + strconv.Itoa(len(machineSymbols)))
-
+	// Read the input and separate out symbols and numbers
 	fmt.Println("Input: ")
 	for i := 0; i < len(inputLines); i++ {
 		inputLine := inputLines[i]
 		getNumbersAndSymbols(inputLine, i, &machineParts, &machineSymbols)
-		//i = len(inputLines)
 	}
-
 	fmt.Println("Number of machine parts: " + strconv.Itoa(len(machineParts)))
 	fmt.Println("Number of symbols: " + strconv.Itoa(len(machineSymbols)))
 
-	// Now that we have the listing of symbols and machine parts, let's see where a symbol is touching a part
+	// Now that we have the listing of symbols and machine parts,
+	//  let's see where a symbol is touching a machine part
 	checkPartsTouchingSymbols(machineParts, machineSymbols)
 
-	//for s := 0; i <
+	// Calculate the ratio
+	totalRatio := calculateRatio(machineSymbols)
+
+	fmt.Println("Total for Ratio: " + strconv.Itoa(totalRatio))
+	fmt.Println("*** End processing ***")
+}
+
+func calculateRatio(machineSymbols []machineSymbol) int {
 	totalRatio := 0
 	for s := 0; s < len(machineSymbols); s++ {
 		if machineSymbols[s].partCount == 2 {
-			fmt.Println("Adding: " + strconv.Itoa(machineSymbols[s].gearRatio))
+			//fmt.Println("Adding: " + strconv.Itoa(machineSymbols[s].gearRatio))
 			totalRatio = totalRatio + machineSymbols[s].gearRatio
 		}
 	}
-	fmt.Println("Total for Ratio: " + strconv.Itoa(totalRatio))
-	fmt.Println("*** End processing ***")
+	return totalRatio
 }
