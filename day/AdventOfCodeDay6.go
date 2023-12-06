@@ -1,4 +1,4 @@
-package main
+package day
 
 import (
 	"fmt"
@@ -18,12 +18,12 @@ func ConvertStrSliceToIntSlice(inputSlice []string) []int {
 	return outputSlice
 }
 
-func processDay6(inputLines []string, aocDay AdventOfCodeDay) {
-	fmt.Println("*** Day " + strconv.Itoa(aocDay.day) + " part " + aocDay.part + " ***")
+func ProcessDay6(inputLines []string, aocDay AdventOfCodeDay) {
+	fmt.Println("*** Day " + strconv.Itoa(aocDay.Day) + " part " + aocDay.Part + " ***")
 
 	//initialize objects needed
 
-	if aocDay.part == "A" {
+	if aocDay.Part == "A" {
 		processDay6A(inputLines)
 	} else {
 		processDay6B(inputLines)

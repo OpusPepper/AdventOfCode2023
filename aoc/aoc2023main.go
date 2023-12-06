@@ -3,28 +3,24 @@ package main
 import (
 	"fmt"
 	"strconv"
+
+	"example.com/day"
+	"example.com/utility"
 )
 
-type AdventOfCodeDay struct {
-	day          int
-	part         string
-	fileOverride string
-}
-
 func main() {
-	aocDay := AdventOfCodeDay{
-		day:          6,
-		part:         "B",
-		fileOverride: "6"}
-
+	aocDay := day.AdventOfCodeDay{
+		6,
+		"B",
+		"6"}
 	fmt.Println("*** Advent of Code 2023 ***")
 	filename := getFilename(aocDay)
 
-	linesRead := ReadinputFile(filename)
+	linesRead := utility.ReadinputFile(filename)
 
 	//fmt.Println("Read from file: " + strings.Join(linesRead, ""))
 
-	switch strconv.Itoa(aocDay.day) + aocDay.part {
+	switch strconv.Itoa(aocDay.Day) + aocDay.Part {
 	case "1A":
 		//processDay1A(linesRead)
 		break
@@ -45,7 +41,7 @@ func main() {
 		break
 	}
 
-	switch aocDay.day {
+	switch aocDay.Day {
 	case 4:
 		//processDay4(linesRead, aocDay)
 		break
@@ -54,17 +50,17 @@ func main() {
 		break
 
 	case 6:
-		processDay6(linesRead, aocDay)
+		day.ProcessDay6(linesRead, aocDay)
 		break
 	}
 
 	fmt.Println("*** End of program ***")
 }
 
-func getFilename(aocDay AdventOfCodeDay) string {
-	filename := "input" + strconv.Itoa(aocDay.day) + aocDay.part + ".txt"
-	if len(aocDay.fileOverride) > 0 {
-		filename = "input" + aocDay.fileOverride + ".txt"
+func getFilename(aocDay day.AdventOfCodeDay) string {
+	filename := "input" + strconv.Itoa(aocDay.Day) + aocDay.Part + ".txt"
+	if len(aocDay.FileOverride) > 0 {
+		filename = "input" + aocDay.FileOverride + ".txt"
 	}
 	return filename
 }

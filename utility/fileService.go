@@ -1,4 +1,4 @@
-package main
+package utility
 
 import (
 	"bufio"
@@ -16,7 +16,7 @@ func check(e error) {
 func ReadinputFile(aocDay string) []string {
 	fmt.Println("*** ReadinputFile ***")
 
-	fileName := "./input/" + aocDay
+	fileName := "../input/" + aocDay
 	fmt.Println("Reading file: " + fileName)
 
 	file, err := os.Open(fileName)

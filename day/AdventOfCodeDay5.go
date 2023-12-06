@@ -1,4 +1,4 @@
-package main
+package day
 
 import (
 	"fmt"
@@ -26,11 +26,11 @@ func getSeeds(inputLine string) []int {
 }
 
 func processDay5(inputLines []string, aocDay AdventOfCodeDay) {
-	fmt.Println("*** Day " + strconv.Itoa(aocDay.day) + " part " + aocDay.part + " ***")
+	fmt.Println("*** Day " + strconv.Itoa(aocDay.Day) + " part " + aocDay.Part + " ***")
 
 	//initialize objects needed
 
-	if aocDay.part == "A" {
+	if aocDay.Part == "A" {
 		processDay5A(inputLines)
 	} else {
 		processDay5B(inputLines)

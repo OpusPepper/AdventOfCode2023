@@ -1,4 +1,4 @@
-package main
+package day
 
 import (
 	"fmt"
@@ -95,11 +95,11 @@ func getScratchNumbersB(inputLine string, inRow int) card {
 }
 
 func processDay4(inputLines []string, aocDay AdventOfCodeDay) {
-	fmt.Println("*** Day " + strconv.Itoa(aocDay.day) + " part " + aocDay.part + " ***")
+	fmt.Println("*** Day " + strconv.Itoa(aocDay.Day) + " part " + aocDay.Part + " ***")
 
 	//initialize objects needed
 
-	if aocDay.part == "A" {
+	if aocDay.Part == "A" {
 		processDay4A(inputLines)
 	} else {
 		processDay4B(inputLines)

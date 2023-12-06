@@ -1,4 +1,4 @@
-package main
+package day
 
 import (
 	"fmt"
@@ -6,6 +6,18 @@ import (
 	"strconv"
 	"strings"
 )
+
+type AdventOfCodeDay struct {
+	Day          int
+	Part         string
+	FileOverride string
+}
+
+func check(e error) {
+	if e != nil {
+		panic(e)
+	}
+}
 
 type machinePart struct {
 	partNumber int
@@ -167,7 +179,7 @@ func processDay3A(inputLines []string) {
 }
 
 func processDay3B(inputLines []string, aocDay AdventOfCodeDay) {
-	fmt.Println("*** Day " + strconv.Itoa(aocDay.day) + " part " + aocDay.part + " ***")
+	fmt.Println("*** Day " + strconv.Itoa(aocDay.Day) + " part " + aocDay.Part + " ***")
 
 	//initialize objects needed
 	var machineParts []machinePart
