@@ -13,9 +13,9 @@ type AdventOfCodeDay struct {
 
 func main() {
 	aocDay := AdventOfCodeDay{
-		day:          5,
+		day:          6,
 		part:         "B",
-		fileOverride: "5"}
+		fileOverride: "6"}
 
 	fmt.Println("*** Advent of Code 2023 ***")
 	filename := getFilename(aocDay)
@@ -50,7 +50,11 @@ func main() {
 		//processDay4(linesRead, aocDay)
 		break
 	case 5:
-		processDay5(linesRead, aocDay)
+		//processDay5(linesRead, aocDay)
+		break
+
+	case 6:
+		processDay6(linesRead, aocDay)
 		break
 	}
 
