@@ -155,7 +155,7 @@ func processDay7A(inputLines []string) {
 func printCardHands(fullHand []cardHand) {
 	fmt.Println("Printing fullhand: ")
 	for i := 0; i < len(fullHand); i++ {
-		fmt.Println("Card: " + fullHand[i].originalString + ", bid: " + strconv.Itoa(fullHand[i].bid) + ", rank: " + strconv.Itoa(fullHand[i].rank) + ", strength: " + strconv.Itoa(fullHand[i].strength))
+		fmt.Println("Card: " + fullHand[i].originalString + ", bid: " + strconv.Itoa(fullHand[i].bid) + ", rank: " + strconv.Itoa(fullHand[i].rank) + ", strength: " + strconv.Itoa(fullHand[i].strength) + ", Winnings: " + strconv.Itoa(fullHand[i].rank*fullHand[i].bid))
 	}
 }
 
@@ -270,13 +270,13 @@ func processDay7B(inputLines []string) {
 	printCardHands(fullHand)
 
 	// Calculate total bids
-	total := 0
+	var total uint = 0
 	for _, t := range fullHand {
 		handWinnings := t.bid * t.rank
-		total += handWinnings
-		fmt.Println("Winnings: " + strconv.Itoa(handWinnings))
+		total += uint(handWinnings)
+		//fmt.Println("Winnings: " + strconv.Itoa(handWinnings))
 	}
-	fmt.Println("grandTotal: " + strconv.Itoa(total))
+	fmt.Printf("grandTotal: %d", uint(total))
 }
 
 func evaluateHandWithJokers(inCardHand cardHand) int {
@@ -314,12 +314,7 @@ func evaluateHandWithJokers(inCardHand cardHand) int {
 	if len(totalCards) == 2 { // four of a kind or full house
 		if totalCards[0].numberOfTimesItAppears == 2 || totalCards[0].numberOfTimesItAppears == 3 {
 			if hasJacks {
-				if numberOfJacks == 1 {
-					return fourOfAKind
-				}
-				if numberOfJacks == 2 || numberOfJacks == 3 {
-					return fiveOfAKind
-				}
+				return fiveOfAKind
 			}
 			return fullHouse
 		}
@@ -331,12 +326,7 @@ func evaluateHandWithJokers(inCardHand cardHand) int {
 	if len(totalCards) == 3 { // three of a kind or two pair
 		if totalCards[0].numberOfTimesItAppears == 3 || totalCards[1].numberOfTimesItAppears == 3 || totalCards[2].numberOfTimesItAppears == 3 {
 			if hasJacks {
-				if numberOfJacks == 1 || numberOfJacks == 3 {
-					return fourOfAKind
-				}
-				if numberOfJacks == 2 {
-					return fiveOfAKind
-				}
+				return fourOfAKind
 			}
 			return threeOfAKind
 		}
@@ -352,16 +342,13 @@ func evaluateHandWithJokers(inCardHand cardHand) int {
 	}
 	if len(totalCards) == 4 { // one pair
 		if hasJacks {
-			if numberOfJacks == 1 {
-				return threeOfAKind
-			}
-			if numberOfJacks == 2 {
-				return fourOfAKind
-			}
-			if numberOfJacks == 3 {
-				return fiveOfAKind
-			}
+			return threeOfAKind
 		}
+		return onePair
+	}
+
+	// high card
+	if hasJacks {
 		return onePair
 	}
 	return highCard
@@ -372,6 +359,8 @@ func doesHandHaveJacks(myCards []myCard) bool {
 	for _, j := range myCards {
 		if j.cardValue == []rune("J")[0] {
 			foundJacks = true
+			//fmt.Println("Found a jack! " + strconv.QuoteRune(j.cardValue))
+			return foundJacks
 		}
 	}
 	return foundJacks
