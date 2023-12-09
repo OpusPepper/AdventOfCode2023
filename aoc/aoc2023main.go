@@ -10,9 +10,9 @@ import (
 
 func main() {
 	aocDay := day.AdventOfCodeDay{
-		8,
+		9,
 		"B",
-		"8"}
+		"9"}
 	fmt.Println("*** Advent of Code 2023 ***")
 	filename := getFilename(aocDay)
 
@@ -59,6 +59,10 @@ func main() {
 
 	case 8:
 		day.ProcessDay8(linesRead, aocDay)
+		break
+
+	case 9:
+		day.ProcessDay9(linesRead, aocDay)
 		break
 	}
 
