@@ -20,6 +20,12 @@ func ProcessDayX(inputLines []string, aocDay AdventOfCodeDay) {
 func processDayXA(inputLines []string) {
 	fmt.Println("*** Start part A ***")
 
+	fmt.Println("Input: ")
+	for i := 0; i < len(inputLines); i++ {
+		inputLine := inputLines[i]
+		fmt.Println(inputLine)
+	}
+
 	fmt.Println("*** End part A ***")
 }
 
